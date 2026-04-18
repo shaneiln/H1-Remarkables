@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>H1 Remarkables — Energy Efficiency Compliance</title>
-  <meta name="description" content="H1 energy efficiency compliance reports for building consent — Central Otago & Queenstown. Architect-led, BCA-ready." />
+  <title>H1 Remarkables — Energy Efficiency Specialists</title>
+  <meta name="description" content="H1 Compliance Reports, Building Consent ready. Accurate, efficient and designed for the region." />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -28,19 +28,12 @@
       min-height: 100vh;
     }
 
-    /* Header */
-    .logo-mark {
-      font-size: 13px;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      color: #888;
-      text-transform: uppercase;
-    }
-    .logo-mark span {
-      color: #1a1a1a;
+    .logo-wrap img {
+      height: 72px;
+      width: auto;
+      display: block;
     }
 
-    /* Main */
     .main {
       flex: 1;
       display: flex;
@@ -49,25 +42,19 @@
       padding: 3rem 0;
     }
 
-    .badge {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #185FA5;
-      background: #E6F1FB;
-      border-radius: 4px;
-      padding: 4px 10px;
-      margin-bottom: 1.5rem;
+    .divider {
+      width: 40px;
+      height: 2px;
+      background: #2E6417;
+      margin-bottom: 2rem;
     }
 
     h1 {
-      font-size: clamp(28px, 6vw, 44px);
+      font-size: clamp(24px, 5vw, 38px);
       font-weight: 500;
-      line-height: 1.2;
+      line-height: 1.25;
       color: #1a1a1a;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
     }
 
     .tagline {
@@ -78,41 +65,24 @@
       margin-bottom: 2.5rem;
     }
 
-    .pill-row {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 3rem;
-    }
-
-    .pill {
-      font-size: 12px;
-      font-weight: 500;
-      color: #666;
-      border: 1px solid #e0e0e0;
-      border-radius: 20px;
-      padding: 6px 14px;
-    }
-
     .contact-block {
       font-size: 14px;
       color: #666;
     }
 
-    /* TO UPDATE: replace the mailto below with your real email address */
     .contact-link {
-      color: #185FA5;
+      color: #2E6417;
       text-decoration: none;
       font-weight: 500;
-      border-bottom: 1px solid #B5D4F4;
+      border-bottom: 1px solid #a0c88a;
       padding-bottom: 1px;
     }
+
     .contact-link:hover {
-      color: #0C447C;
-      border-bottom-color: #185FA5;
+      color: #1e4310;
+      border-bottom-color: #2E6417;
     }
 
-    /* Footer */
     .footer {
       font-size: 12px;
       color: #aaa;
@@ -125,9 +95,9 @@
       gap: 8px;
     }
 
-    /* Responsive */
     @media (max-width: 480px) {
       .page { padding: 2rem 1.25rem; }
+      .logo-wrap img { height: 56px; }
       .footer { flex-direction: column; align-items: flex-start; }
     }
   </style>
@@ -136,22 +106,18 @@
   <div class="page">
 
     <header>
-      <div class="logo-mark"><span>H1</span> Remarkables</div>
+      <div class="logo-wrap">
+        <img src="H1.png" alt="H1 Remarkables — Energy Efficiency Specialists" />
+      </div>
     </header>
 
     <main class="main">
-      <div class="badge">Energy efficiency compliance</div>
-      <h1>Building consent<br>reports for Central<br>Otago &amp; Queenstown.</h1>
+      <div class="divider"></div>
+      <h1>H1 Compliance Reports,<br>prepared to BCA-ready standard.</h1>
       <p class="tagline">
-        Architect-led H1 compliance reports, prepared to BCA-ready standard —
-        accurate, efficient, and built for the region.
+        H1 Compliance Reports, Building Consent ready.<br>
+        Accurate, efficient and designed for the region.
       </p>
-      <div class="pill-row">
-        <span class="pill">H1 Schedule 2</span>
-        <span class="pill">Modelling reports</span>
-        <span class="pill">Architect-led</span>
-        <span class="pill">BCA-ready</span>
-      </div>
       <div class="contact-block">
         Get in touch &mdash;
         <!-- TO UPDATE: replace with your real email address -->
