@@ -29,28 +29,31 @@
       background: var(--green);
       width: 100%;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 2.5rem 2rem 2rem;
-      text-align: center;
+      padding: 1.5rem 2rem;
     }
 
     .hero-logo {
-      width: min(260px, 70vw);
+      width: min(300px, 75vw);
       height: auto;
       display: block;
-      margin-bottom: 1.5rem;
     }
 
-    .hero-tagline {
+    /* ── TAGLINE ── */
+    .tagline-block {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem 0;
+    }
+
+    .tagline-block h1 {
       font-family: 'Rajdhani', sans-serif;
-      font-weight: 500;
-      font-size: clamp(16px, 3vw, 22px);
-      color: rgba(255,255,255,0.88);
-      letter-spacing: 0.03em;
-      line-height: 1.5;
-      max-width: 520px;
+      font-weight: 600;
+      font-size: clamp(26px, 4.5vw, 42px);
+      color: var(--green);
+      line-height: 1.2;
+      letter-spacing: 0.02em;
     }
 
     /* ── CONTENT ── */
@@ -62,7 +65,7 @@
 
     /* ── SERVICE SECTIONS ── */
     .services {
-      padding: 4rem 0;
+      padding: 3.5rem 0;
       border-bottom: 1px solid var(--border);
     }
 
@@ -178,7 +181,8 @@
     }
 
     @media (max-width: 520px) {
-      .hero { padding: 2rem 1.5rem 1.75rem; }
+      .hero { padding: 1.25rem 1.5rem; }
+      .tagline-block { padding: 2rem 1.25rem 0; }
       .content { padding: 0 1.25rem; }
       .footer { flex-direction: column; align-items: flex-start; }
     }
@@ -189,8 +193,12 @@
   <!-- HERO -->
   <section class="hero">
     <img class="hero-logo" src="H1-3.png" alt="H1 Remarkables" />
-    <p class="hero-tagline">H1 Compliance Reports, Building Consent ready.<br>Accurate, efficient and designed for the region.</p>
   </section>
+
+  <!-- TAGLINE -->
+  <div class="tagline-block">
+    <h1>H1 Compliance Reports, Building Consent ready. Accurate, efficient and designed for the region.</h1>
+  </div>
 
   <div class="content">
 
