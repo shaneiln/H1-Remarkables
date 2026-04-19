@@ -280,6 +280,39 @@
       gap: 8px;
     }
 
+    /* ── ANIMATIONS ── */
+    .tagline-block {
+      animation: fadeUp 0.7s ease both;
+      animation-delay: 0.15s;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-header .section-icon {
+      transition: transform 0.4s ease 0.3s, opacity 0.4s ease 0.3s;
+      opacity: 0;
+      transform: scale(0.7);
+    }
+
+    .reveal.visible .section-icon {
+      opacity: 1;
+      transform: scale(1);
+    }
+
     @media (max-width: 520px) {
       .hero { padding: 0.6rem 1.5rem; }
       .tagline-block { padding: 2rem 1.25rem 0; }
@@ -322,7 +355,7 @@
     <!-- SERVICES -->
     <div class="services">
 
-      <div class="section">
+      <div class="section reveal">
         <div class="section-header">
           <img class="section-icon" src="permit.png" alt="" />
           <div>
@@ -333,7 +366,7 @@
         <p>H1 Remarkables provides H1 energy efficiency compliance reports for residential building consent applications across Central Otago and Queenstown. Using the Calculation Method under Acceptable Solution H1/AS1, we produce accurate, BCA-ready reports tailored to your project — helping designers, draftspeople, and builders get consent-ready without the hassle.</p>
       </div>
 
-      <div class="section">
+      <div class="section reveal">
         <div class="section-header">
           <img class="section-icon" src="thermal-insulation.png" alt="" />
           <div>
@@ -344,7 +377,7 @@
         <p>H1 is the New Zealand Building Code clause governing energy efficiency in residential buildings. It requires new homes to meet minimum thermal performance standards across the building envelope: walls, roof, floor, windows, and doors. The Calculation Method under Acceptable Solution H1/AS1 is now the primary compliance pathway, following the removal of the Schedule Method in November 2025. An H1 compliance report is required for any residential building consent application — without it, your consent won't be processed.</p>
       </div>
 
-      <div class="section">
+      <div class="section reveal">
         <div class="section-header">
           <img class="section-icon" src="insulation.png" alt="" />
           <div>
@@ -358,7 +391,7 @@
     </div>
 
     <!-- CONTACT -->
-    <div class="contact">
+    <div class="contact reveal">
       <div class="contact-inner">
         <div class="contact-label">Get in touch</div>
         <p>Ready to get your H1 compliance report sorted? Reach out and we'll get back to you promptly.</p>
@@ -390,6 +423,25 @@
       document.getElementById('navOverlay').classList.remove('open');
       document.getElementById('hamburger').classList.remove('open');
     }
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          // stagger each element slightly
+          const delay = entry.target.dataset.delay || 0;
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, delay);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+      el.dataset.delay = i * 120;
+      observer.observe(el);
+    });
   </script>
 
 </body>
