@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fees & Services — H1 Remarkables</title>
+  <meta name="description" content="Fixed-price H1 compliance reporting. Standard, Complex, and Multi-Unit tiers for residential building consent." />
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #007A3F;
+      --green-dark: #005c2f;
+      --green-light: #e6f4ec;
+      --text: #1a1a1a;
+      --muted: #555;
+      --border: #e5e5e5;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #fff;
+      color: var(--text);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--green);
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem 2rem;
+      position: relative;
+    }
+
+    .hero-logo {
+      width: min(300px, 75vw);
+      height: auto;
+      display: block;
+    }
+
+    /* ── HAMBURGER ── */
+    .hamburger {
+      position: absolute;
+      top: 50%;
+      right: 1.5rem;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      z-index: 100;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 30px;
+      height: 3px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .hamburger.open span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+    /* ── NAV DRAWER ── */
+    .nav-drawer {
+      position: fixed;
+      top: 0;
+      right: -280px;
+      width: 280px;
+      height: 100vh;
+      background: var(--green-dark);
+      z-index: 200;
+      transition: right 0.35s ease;
+      display: flex;
+      flex-direction: column;
+      padding: 5rem 2rem 2rem;
+    }
+
+    .nav-drawer.open { right: 0; }
+
+    .nav-drawer a {
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 600;
+      font-size: 22px;
+      letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.9);
+      text-decoration: none;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      transition: color 0.2s;
+    }
+
+    .nav-drawer a:hover { color: #fff; }
+
+    .nav-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 150;
+    }
+
+    .nav-overlay.open { display: block; }
+
+    .drawer-close {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.7);
+      font-size: 28px;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .drawer-close:hover { color: #fff; }
+
+    /* ── PAGE TITLE ── */
+    .tagline-block {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem 0;
+    }
+
+    .tagline-block h1 {
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 600;
+      font-size: clamp(26px, 4.5vw, 42px);
+      color: var(--green);
+      line-height: 1.2;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── CONTENT ── */
+    .content {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── INTRO ── */
+    .intro {
+      padding: 2rem 0 3rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .intro p {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.85;
+      max-width: 580px;
+    }
+
+    /* ── PRICING CARDS ── */
+    .pricing {
+      padding: 3.5rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem;
+      position: relative;
+      transition: border-color 0.2s;
+    }
+
+    .card:hover {
+      border-color: var(--green);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+      gap: 1rem;
+    }
+
+    .card-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 700;
+      font-size: 26px;
+      color: var(--text);
+      letter-spacing: 0.03em;
+    }
+
+    .card-price {
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 700;
+      font-size: 28px;
+      color: var(--green);
+      white-space: nowrap;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+    }
+
+    .card-turnaround {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--green);
+      background: var(--green-light);
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+
+    /* featured card */
+    .card.featured {
+      border-color: var(--green);
+      border-width: 2px;
+    }
+
+    .featured-badge {
+      position: absolute;
+      top: -12px;
+      left: 2rem;
+      background: var(--green);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 12px;
+      border-radius: 20px;
+    }
+
+    /* ── INCLUDES ── */
+    .includes {
+      padding: 3rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .includes-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 1.25rem;
+    }
+
+    .includes ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .includes ul li {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.6;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+
+    .includes ul li::before {
+      content: '';
+      display: block;
+      width: 8px;
+      height: 8px;
+      min-width: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      margin-top: 7px;
+    }
+
+    /* ── CONTACT ── */
+    .contact {
+      padding: 3.5rem 0 4rem;
+    }
+
+    .contact-inner {
+      background: var(--green-light);
+      border-left: 3px solid var(--green);
+      padding: 2rem;
+      border-radius: 0 6px 6px 0;
+    }
+
+    .contact-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-inner p {
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+      line-height: 1.6;
+    }
+
+    .contact-link {
+      display: inline-block;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--green);
+      text-decoration: none;
+      border-bottom: 1px solid #a0c88a;
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .contact-link:hover {
+      color: var(--green-dark);
+      border-bottom-color: var(--green-dark);
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--green-dark);
+      color: rgba(255,255,255,0.55);
+      font-size: 12px;
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    @media (max-width: 520px) {
+      .hero { padding: 1.25rem 1.5rem; }
+      .tagline-block { padding: 2rem 1.25rem 0; }
+      .content { padding: 0 1.25rem; }
+      .card-header { flex-direction: column; gap: 0.25rem; }
+      .footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV OVERLAY -->
+  <div class="nav-overlay" id="navOverlay" onclick="closeNav()"></div>
+
+  <!-- NAV DRAWER -->
+  <nav class="nav-drawer" id="navDrawer">
+    <button class="drawer-close" onclick="closeNav()">&times;</button>
+    <a href="index.html">Home</a>
+    <a href="fees.html">Fees &amp; Services</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <img class="hero-logo" src="H1-3.png" alt="H1 Remarkables" />
+    <button class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Open menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </section>
+
+  <!-- PAGE TITLE -->
+  <div class="tagline-block">
+    <h1>Fees &amp; Services</h1>
+  </div>
+
+  <div class="content">
+
+    <!-- INTRO -->
+    <div class="intro">
+      <p>H1 Remarkables offers straightforward, fixed-price reporting with no hidden costs. Select the tier that best matches your project — if you're unsure, get in touch and we'll point you in the right direction.</p>
+    </div>
+
+    <!-- PRICING CARDS -->
+    <div class="pricing">
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Standard</div>
+          <div class="card-price">$350</div>
+        </div>
+        <p>Single residential dwelling with a straightforward building envelope. Suitable for standard timber frame construction, conventional insulation products, and typical window-to-wall ratios. Includes a full H1 Calculation Method report under H1/AS1, ready for your building consent application.</p>
+        <span class="card-turnaround">&#9679; Turnaround: 2–3 business days</span>
+      </div>
+
+      <div class="card featured">
+        <div class="featured-badge">Most Common</div>
+        <div class="card-header">
+          <div class="card-title">Complex</div>
+          <div class="card-price">$500</div>
+        </div>
+        <p>Single residential dwelling with a more involved envelope. Suitable for projects with high glazing ratios, mixed cladding systems, non-standard construction methods, or alternative products such as CLT or heavy timber. Report tailored to your specific product selections and design constraints.</p>
+        <span class="card-turnaround">&#9679; Turnaround: 2–3 business days</span>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Multi-Unit</div>
+          <div class="card-price">From $600</div>
+        </div>
+        <p>Townhouses, duplexes, or minor dwellings submitted alongside a main dwelling on the same consent. Pricing depends on the number of units and envelope complexity — contact us for a fixed quote before you commit.</p>
+        <span class="card-turnaround">&#9679; Turnaround: 3–5 business days</span>
+      </div>
+
+    </div>
+
+    <!-- ALL REPORTS INCLUDE -->
+    <div class="includes">
+      <div class="includes-label">All reports include</div>
+      <ul>
+        <li>H1 Calculation Method compliance under H1/AS1 Sixth Edition</li>
+        <li>Climate zone specific to your site</li>
+        <li>BCA-ready documentation</li>
+      </ul>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="contact">
+      <div class="contact-inner">
+        <div class="contact-label">Ready to get started?</div>
+        <p>Get in touch and we'll get back to you promptly.</p>
+        <!-- TO UPDATE: replace with your real email address -->
+        <a class="contact-link" href="mailto:hello@h1remarkables.co.nz">hello@h1remarkables.co.nz</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span>Central Otago &amp; Queenstown Lakes</span>
+    <span>&copy; 2026 H1 Remarkables</span>
+  </footer>
+
+  <script>
+    function toggleNav() {
+      const drawer = document.getElementById('navDrawer');
+      const overlay = document.getElementById('navOverlay');
+      const hamburger = document.getElementById('hamburger');
+      drawer.classList.toggle('open');
+      overlay.classList.toggle('open');
+      hamburger.classList.toggle('open');
+    }
+
+    function closeNav() {
+      document.getElementById('navDrawer').classList.remove('open');
+      document.getElementById('navOverlay').classList.remove('open');
+      document.getElementById('hamburger').classList.remove('open');
+    }
+  </script>
+
+</body>
+</html>
