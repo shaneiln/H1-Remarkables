@@ -32,12 +32,114 @@
       align-items: center;
       justify-content: center;
       padding: 1.5rem 2rem;
+      position: relative;
     }
 
     .hero-logo {
       width: min(300px, 75vw);
       height: auto;
       display: block;
+    }
+
+    /* ── HAMBURGER ── */
+    .hamburger {
+      position: absolute;
+      top: 50%;
+      right: 1.5rem;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      z-index: 100;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 30px;
+      height: 3px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .hamburger.open span:nth-child(1) {
+      transform: translateY(9px) rotate(45deg);
+    }
+
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.open span:nth-child(3) {
+      transform: translateY(-9px) rotate(-45deg);
+    }
+
+    /* ── NAV DRAWER ── */
+    .nav-drawer {
+      position: fixed;
+      top: 0;
+      right: -280px;
+      width: 280px;
+      height: 100vh;
+      background: var(--green-dark);
+      z-index: 200;
+      transition: right 0.35s ease;
+      display: flex;
+      flex-direction: column;
+      padding: 5rem 2rem 2rem;
+    }
+
+    .nav-drawer.open {
+      right: 0;
+    }
+
+    .nav-drawer a {
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 600;
+      font-size: 22px;
+      letter-spacing: 0.04em;
+      color: rgba(255,255,255,0.9);
+      text-decoration: none;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      transition: color 0.2s;
+    }
+
+    .nav-drawer a:hover {
+      color: #fff;
+    }
+
+    .nav-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 150;
+    }
+
+    .nav-overlay.open {
+      display: block;
+    }
+
+    /* close button inside drawer */
+    .drawer-close {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.7);
+      font-size: 28px;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .drawer-close:hover {
+      color: #fff;
     }
 
     /* ── TAGLINE ── */
@@ -77,14 +179,8 @@
       border-bottom: 1px solid var(--border);
     }
 
-    .section:first-child {
-      padding-top: 0;
-    }
-
-    .section:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
+    .section:first-child { padding-top: 0; }
+    .section:last-child { border-bottom: none; padding-bottom: 0; }
 
     .section-header {
       display: flex;
@@ -190,9 +286,24 @@
 </head>
 <body>
 
+  <!-- NAV OVERLAY -->
+  <div class="nav-overlay" id="navOverlay" onclick="closeNav()"></div>
+
+  <!-- NAV DRAWER -->
+  <nav class="nav-drawer" id="navDrawer">
+    <button class="drawer-close" onclick="closeNav()">&times;</button>
+    <a href="index.html">Home</a>
+    <a href="fees.html">Fees &amp; Services</a>
+  </nav>
+
   <!-- HERO -->
   <section class="hero">
     <img class="hero-logo" src="H1-3.png" alt="H1 Remarkables" />
+    <button class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Open menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </section>
 
   <!-- TAGLINE -->
@@ -257,6 +368,23 @@
     <span>Central Otago &amp; Queenstown Lakes</span>
     <span>&copy; 2026 H1 Remarkables</span>
   </footer>
+
+  <script>
+    function toggleNav() {
+      const drawer = document.getElementById('navDrawer');
+      const overlay = document.getElementById('navOverlay');
+      const hamburger = document.getElementById('hamburger');
+      drawer.classList.toggle('open');
+      overlay.classList.toggle('open');
+      hamburger.classList.toggle('open');
+    }
+
+    function closeNav() {
+      document.getElementById('navDrawer').classList.remove('open');
+      document.getElementById('navOverlay').classList.remove('open');
+      document.getElementById('hamburger').classList.remove('open');
+    }
+  </script>
 
 </body>
 </html>
