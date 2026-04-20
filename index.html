@@ -179,7 +179,7 @@
       display: flex;
       flex-direction: column;
       gap: 1rem;
-      padding: 2.5rem 0;
+      padding: 4rem 0;
       border-bottom: 1px solid var(--border);
     }
 
@@ -293,8 +293,8 @@
 
     .reveal {
       opacity: 0;
-      transform: translateY(36px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      transform: translateY(52px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
     }
 
     .reveal.visible {
@@ -426,9 +426,8 @@
 
     // Scroll reveal
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          // stagger each element slightly
           const delay = entry.target.dataset.delay || 0;
           setTimeout(() => {
             entry.target.classList.add('visible');
@@ -436,10 +435,10 @@
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.35 });
 
     document.querySelectorAll('.reveal').forEach((el, i) => {
-      el.dataset.delay = i * 120;
+      el.dataset.delay = i * 100;
       observer.observe(el);
     });
   </script>
